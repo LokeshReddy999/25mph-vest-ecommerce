@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Buy - 25mph Vest</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <h1>Order Your Vest</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/images">Images</a>
+      <a href="/buy">Buy</a>
+    </nav>
+  </header>
+
+  <section class="size-chart">
+    <img src="/images/sizes.jpeg" alt="Size Chart" />
+  </section>
+
+  <section class="buy-section">
+    <form action="mailto:test123@gmail.com" method="POST" enctype="text/plain">
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" name="quantity" min="1" value="1" required><br><br>
+
+      <label for="size">Size:</label>
+      <select id="size" name="size">
+        <option value="Small">Small</option>
+        <option value="Medium">Medium</option>
+        <option value="Large">Large</option>
+      </select><br><br>
+
+      <button type="submit">Buy Now</button>
+    </form>
+  </section>
+</body>
+</html>
