@@ -1,0 +1,98 @@
+/* Global Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    color: #333;
+  }
+  
+  /* Header */
+  header {
+    background: #ffffff;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  header h1 {
+    margin: 0;
+  }
+  
+  nav {
+    margin-top: 10px;
+  }
+  
+  nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #444;
+    font-weight: bold;
+  }
+  
+  nav a:hover {
+    color: orange;
+  }
+  
+  /* Hero Section */
+  .hero {
+    background: #90a4ae;
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+  }
+  
+  .hero img {
+    width: 200px;
+    margin-top: 20px;
+  }
+  
+  .hero p {
+    font-size: 18px;
+    margin-top: 15px;
+  }
+  
+  /* Features */
+  .features {
+    background: #37474f;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+  }
+  
+  .features ul {
+    list-style: none;
+    padding: 0;
+    font-size: 18px;
+  }
+  
+  /* CTA Button */
+  .cta {
+    background: #eceff1;
+    text-align: center;
+    padding: 60px 20px;
+    margin-top: 40px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cta h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  
+  .cta p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 25px;
+  }
+  
+  .cta button {
+    font-size: 20px;
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      }  
