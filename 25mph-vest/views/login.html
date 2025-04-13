@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - 25mph Vest</title>
+  <link rel="stylesheet" href="/css/login-style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="brand">25mph Vest</div>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/buy">Buy</a></li>
+        <li><a class="active" href="/login">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="login-container">
+    <!-- Background -->
+    <div class="background-overlay"></div>
+
+    <!-- Side Quote & Features -->
+    <div class="side-panel">
+      <h2 class="quote">"Be seen. Be safe. Because every life matters."</h2>
+      <div class="features">
+        <span class="feature-badge">✅ Certified Safety</span>
+        <span class="feature-badge">🚴‍♂️ Perfect for Cycling</span>
+        <span class="feature-badge">🌙 Night Reflective</span>
+      </div>
+      <div class="slideshow" id="slideshow">
+        <div class="slide active">Trusted by 1,000+ parents.</div>
+        <div class="slide">Designed for visibility.</div>
+        <div class="slide">Stay safe at 25mph.</div>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <div class="form-wrapper">
+      <div id="registerForm" class="form-box show">
+        <h2>Create Account 📝</h2>
+        <form>
+          <input type="text" placeholder="Full Name" required>
+          <input type="email" placeholder="Email" required>
+          <input type="password" placeholder="Password" required>
+          <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <span class="switch" onclick="showLogin()">Login</span></p>
+      </div>
+
+      <div id="loginForm" class="form-box">
+        <h2>Welcome Back 👋</h2>
+        <form>
+          <input type="email" placeholder="Email" required>
+          <input type="password" placeholder="Password" required>
+          <button type="submit">Login</button>
+        </form>
+        <p>Don’t have an account? <span class="switch" onclick="showRegister()">Register</span></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/login.js"></script>
+</body>
+</html>
