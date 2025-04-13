@@ -1,0 +1,170 @@
+/* Fonts & Reset */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  height: 100%;
+  overflow: hidden;
+  background: url('/images/vest-bg.png') center/cover no-repeat fixed;
+  backdrop-filter: blur(5px);
+}
+
+.login-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(6px);
+  background-color: rgba(255, 255, 255, 0.3);
+  z-index: 1;
+}
+
+/* Left Side: Quote + Features + Slideshow */
+.side-panel {
+  position: relative;
+  z-index: 2;
+  flex: 1.1;
+  padding: 50px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.quote {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  max-width: 500px;
+  line-height: 1.5;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 50px;
+}
+
+.feature-badge {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 16px;
+  display: inline-block;
+  width: fit-content;
+  backdrop-filter: blur(4px);
+}
+
+/* Slideshow */
+.slideshow {
+  font-size: 20px;
+  font-weight: 500;
+  animation: fadeSlide 3s ease-in-out infinite;
+  color: #fff;
+}
+
+.slide {
+  display: none;
+  transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+  display: block;
+}
+
+/* Right Side: Form */
+.form-wrapper {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-box {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.7s ease;
+}
+
+.form-box h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.form-box input {
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.form-box input:focus {
+  outline: none;
+  border-color: #28c428;
+  box-shadow: 0 0 5px #28c42888;
+}
+
+.form-box button {
+  width: 100%;
+  padding: 12px;
+  background-color: #28c428;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.form-box button:hover {
+  background-color: #24b424;
+}
+
+.toggle-link {
+  margin-top: 15px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.toggle-link a {
+  color: #28c428;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.toggle-link a:hover {
+  text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeSlide {
+  0%, 100% { opacity: 0; transform: translateY(10px); }
+  50% { opacity: 1; transform: translateY(0); }
+}
