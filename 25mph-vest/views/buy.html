@@ -1,38 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Buy - 25mph Vest</title>
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/css/buy-style.css" />
 </head>
 <body>
+  <!-- Header -->
   <header>
-    <h1>Order Your Vest</h1>
+    <div class="brand">25mph Vest</div>
     <nav>
-      <a href="/">Home</a>
-      <a href="/images">Images</a>
-      <a href="/buy">Buy</a>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a class="active" href="/buy">Buy</a></li>
+        <li><a href="/login">Login</a></li>
+        <li class="cart-icon">
+          <a href="/checkout.html">
+            🛒 <span id="cart-count">0</span>
+        <li><span id="welcomeUser" class="welcome-user"></span></li>    
+          </a>
+        </li>
+      </ul>
     </nav>
   </header>
 
-  <section class="size-chart">
-    <img src="/images/sizes.jpeg" alt="Size Chart" />
+  <!-- Tab Buttons -->
+  <div class="tab-buttons">
+    <button id="kidsBtn" class="tab-btn active">Kids Vest</button>
+    <button id="adultBtn" class="tab-btn">Adult Vest</button>
+  </div>
+
+  <!-- Kids Vest Section -->
+  <section id="kidsSection" class="tab-section show">
+    <div class="vest-container">
+      <div class="vest-image">
+        <img src="/images/kids-vest.png" alt="Kids Vest" />
+      </div>
+      <div class="vest-info">
+        <h2>👦 Kids 25mph Vest</h2>
+
+        <div class="price">Price: <span class="price-amount">$9.99</span></div>
+
+        <div class="field-block">
+          <label for="kidsQuantity">Quantity:</label>
+          <div class="quantity-selector">
+            <button class="qty-btn" onclick="changeQty('kidsQuantity', -1)">−</button>
+            <input type="number" id="kidsQuantity" value="1" min="1" required />
+            <button class="qty-btn" onclick="changeQty('kidsQuantity', 1)">+</button>
+          </div>
+        </div>
+
+        <div class="field-block">
+          <label for="kidsSize">Size:</label>
+          <select id="kidsSize" required>
+            <option value="">Select</option>
+            <option value="XS">XS</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+          </select>
+        </div>
+
+        <div class="total-price">🧾 Total: <span id="kidsTotal">$9.99</span></div>
+
+        <div class="size-chart">
+          <div class="size-guide-label">📏 Size Guide</div>
+          <img src="/images/sizes.jpeg" alt="Size Chart" />
+        </div>
+
+        <div class="action-buttons">
+          <button class="buy-btn" onclick="addToCart('kids')">Add to Cart</button>
+          <button class="buy-btn" style="background-color: #0984e3;" onclick="goToCheckout('kids')">Checkout</button>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="buy-section">
-    <form action="mailto:test123@gmail.com" method="POST" enctype="text/plain">
-      <label for="quantity">Quantity:</label>
-      <input type="number" id="quantity" name="quantity" min="1" value="1" required><br><br>
+  <!-- Adult Vest Section -->
+  <section id="adultSection" class="tab-section">
+    <div class="vest-container">
+      <div class="vest-image">
+        <img src="/images/adult-vest.png" alt="Adult Vest" />
+      </div>
+      <div class="vest-info">
+        <h2>🧑 Adult 25mph Vest</h2>
 
-      <label for="size">Size:</label>
-      <select id="size" name="size">
-        <option value="Small">Small</option>
-        <option value="Medium">Medium</option>
-        <option value="Large">Large</option>
-      </select><br><br>
+        <div class="price">Price: <span class="price-amount">$9.99</span></div>
 
-      <button type="submit">Buy Now</button>
-    </form>
+        <div class="field-block">
+          <label for="adultQuantity">Quantity:</label>
+          <div class="quantity-selector">
+            <button class="qty-btn" onclick="changeQty('adultQuantity', -1)">−</button>
+            <input type="number" id="adultQuantity" value="1" min="1" required />
+            <button class="qty-btn" onclick="changeQty('adultQuantity', 1)">+</button>
+          </div>
+        </div>
+
+        <div class="field-block">
+          <label for="adultSize">Size:</label>
+          <select id="adultSize" required>
+            <option value="">Select</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+          </select>
+        </div>
+
+        <div class="total-price">🧾 Total: <span id="adultTotal">$9.99</span></div>
+
+        <div class="size-chart">
+          <div class="size-guide-label">📏 Size Guide</div>
+          <img src="/images/sizes.jpeg" alt="Size Chart" />
+        </div>
+
+        <div class="action-buttons">
+          <button class="buy-btn" onclick="addToCart('adult')">Add to Cart</button>
+          <button class="buy-btn" style="background-color: #0984e3;" onclick="goToCheckout('adult')">Checkout</button>
+        </div>
+      </div>
+    </div>
   </section>
+
+  <script src="/js/buy.js"></script>
 </body>
 </html>
