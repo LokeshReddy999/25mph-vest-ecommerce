@@ -1,39 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Home - 25mph Vest</title>
-  <link rel="stylesheet" href="/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>25mph Vest</title>
+  <link rel="stylesheet" href="/css/style.css" />
 </head>
+  <script src="/js/welcome.js"></script>
+
 <body>
+
+  <!-- Header -->
   <header>
-    <h1>25mph Vest</h1>
+    <div class="brand">25mph Vest</div>
     <nav>
-      <a href="/">Home</a>
-      <a href="/images">Images</a>
-      <a href="/buy">Buy</a>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/buy">Buy</a></li>
+        <li id="loginNavItem"><a href="/login">Login</a></li>
+        <li class="user-profile" id="userDropdown" style="display: none;">
+          <span id="welcomeUser" class="profile-trigger">👤 Welcome</span>
+          <ul class="profile-dropdown" id="profileMenu">
+            <li><a href="/order-history.html">Order History</a></li>
+            <li><a href="#" id="logoutBtn">🔓 Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+      
     </nav>
+    
+    
   </header>
+  
 
-  <section class="hero">
-    <h2>Be Seen. Be Safe.</h2>
-    <img src="/images/vest.jpg" alt="Vest Image" />
-    <p>Our neon green 25mph vest helps drivers slow down when you're out walking, jogging, or biking.</p>
+  
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-container">
+      <div class="hero-text">
+        <h1>Be Seen. Be Safe.</h1>
+        <p>Our neon green 25mph vest helps drivers slow down when you're out walking, jogging, or biking.</p>
+        <h3>Why Use a 25mph Vest?</h3>
+        <ul>
+          <li>✅ High visibility in all lighting</li>
+          <li>✅ Lightweight and durable</li>
+          <li>✅ Great for neighborhoods, schools, and trails</li>
+        </ul>
+        <a href="/buy">Order Now</a>
+      </div>
+      <div class="hero-image">
+        <img src="/images/vest.png" alt="25mph Vest" />
+      </div>
+    </div>
   </section>
 
-  <section class="features">
-    <h2>Why Use It?</h2>
-    <ul>
-      <li>✅ High visibility in all lighting</li>
-      <li>✅ Lightweight & durable</li>
-      <li>✅ Great for neighborhoods, schools, trails</li>
-    </ul>
+  <!-- How It Works Section -->
+  <section id="how-it-works">
+    <h2>How It Works</h2>
+    <div class="card-container">
+      <div class="card">Browse your preferred vest</div>
+      <div class="card">Select size and quantity</div>
+      <div class="card">Available for delivery within the United States.</div>
+    </div>
   </section>
 
-  <section class="cta">
-    <h2>Ready to Order?</h2>
-    <p>Click below to choose your size and place your order.</p>
-    <button onclick="window.location.href='/buy'">Let Me In</button>
-  </section>
 </body>
 </html>
