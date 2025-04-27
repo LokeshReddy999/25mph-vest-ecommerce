@@ -2,28 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Admin Dashboard</title>
+  <title>Admin Dashboard - 25mph Vest</title>
   <link rel="stylesheet" href="/css/admin-dashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
-    <div class="brand">Admin Panel - 25mph Vest</div>
+    <div class="brand">25mph Vest</div>
     <nav>
       <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="#" id="logoutBtn">Logout</a></li>
+        <li class="user-profile">
+          <span class="profile-trigger">👤 Admin</span>
+          <ul class="profile-dropdown">
+            <li><a href="/admin-dashboard.html">Dashboard</a></li>
+            <li><a href="/" id="logoutBtn"> Logout</a></li>
+          </ul>
+        </li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <h1>👨‍💼 Welcome Admin</h1>
-    <section class="cards">
-      <div class="card" id="totalOrders">📦 Total Orders: 0</div>
-      <div class="card" id="totalPayment">💰 Total Payment: $0</div>
-      <div class="card" id="inventory">📊 Inventory - Kids: 0, Adults: 0</div>
-      <div class="card" id="customers">🧑‍🤝‍🧑 Customers: 0</div>
-    </section>
+  <main class="dashboard-container">
+    <h1>Welcome, Admin 👨‍💼</h1>
+
+    <!-- KPI Cards -->
+    <div class="kpi-cards">
+      <div class="card"> Total Orders: <span id="totalOrders">0</span></div>
+      <div class="card"> Total Revenue: $<span id="totalRevenue">0.00</span></div>
+      <div class="card"> <span id="kidsInventory"></span></div>
+      <div class="card"> <span id="adultInventory"></span></div>
+
+    </div>
+
+    <!-- Tables -->
+    <div class="tables-section">
+      <h2>📦 Recent Orders</h2>
+      <table id="ordersTable">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Product</th>
+            <th>Size</th>
+            <th>Qty</th>
+            <th>Total</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <h2>🧍 Customers</h2>
+      <table id="customersTable">
+        <thead>
+          <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <h2>✏️ Update Inventory</h2>
+      <form id="inventoryForm">
+        <label>Product Type:
+          <select id="productType">
+            <option value="kids">Kids</option>
+            <option value="adult">Adult</option>
+          </select>
+        </label>
+        <label>Size:
+            <select id="productSize">
+              <!-- Dynamically filled -->
+            </select>
+          </label>
+          
+        <label>New Quantity:
+          <input type="number" id="newQuantity" required />
+        </label>
+        <button type="submit">Update Inventory</button>
+      </form>
+    </div>
   </main>
 
   <script src="/js/admin-dashboard.js"></script>
