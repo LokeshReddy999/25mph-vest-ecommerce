@@ -1,44 +1,48 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Replace this with dynamic email (after login integration)
-    const email = localStorage.getItem("userEmail"); 
-  
-    if (!email) {
-      document.getElementById('order-list').innerHTML = "<p style='text-align:center;'>Please log in to view your orders.</p>";
-      return;
-    }
-  
-    fetch(`/api/orders/user/${email}`)
-      .then(res => res.json())
-      .then(orders => {
-        const container = document.getElementById('order-list');
-        if (!orders.length) {
-          container.innerHTML = "<p style='text-align:center;'>You have no orders yet.</p>";
-          return;
-        }
-  
-        orders.forEach(order => {
-          const div = document.createElement("div");
-          div.style = "border:1px solid #ccc; border-radius:8px; padding:20px; margin-bottom:20px; background:#fff";
-  
-          div.innerHTML = `
-            <h3>🧾 Order ID: <small>${order._id}</small></h3>
-            <p><strong>Date:</strong> ${new Date(order.createdAt).toLocaleString()}</p>
-            <p><strong>Status:</strong> ${order.orderStatus}</p>
-            <ul style="padding-left: 20px;">
-              ${order.items.map(item => `
-                <li>
-                  ${item.product} - Size: ${item.size}, Qty: ${item.quantity}, Total: $${item.total}
-                </li>`).join('')}
-            </ul>
-            <p><strong>Total Paid:</strong> $${order.totalAmount}</p>
+  const user = JSON.parse(localStorage.getItem("user"));
+  const email = user?.email;
+
+  const table = document.getElementById('orderHistoryTable');
+  const tbody = table.querySelector('tbody');
+  const noOrdersText = document.getElementById('orderHistoryText');
+
+  if (!email) {
+    table.style.display = 'none';
+    noOrdersText.style.display = 'block';
+    noOrdersText.textContent = 'Please log in to view your orders.';
+    return;
+  }
+
+  fetch(`/api/orders/user/${email}`)
+    .then(res => res.json())
+    .then(orders => {
+      if (!orders.length) {
+        table.style.display = 'none';
+        noOrdersText.style.display = 'block';
+        noOrdersText.textContent = 'You have no orders yet.';
+        return;
+      }
+
+      orders.forEach(order => {
+        order.items.forEach(item => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${new Date(order.createdAt).toLocaleString()}</td>
+            <td>${item.product}</td>
+            <td>${item.size}</td>
+            <td>${item.quantity}</td>
+            <td>$${item.total.toFixed(2)}</td>
+            <td>${order.paymentStatus}</td>
+            <td>${order.orderStatus === "Pending" ? "Confirmed" : order.orderStatus}</td>
           `;
-  
-          container.appendChild(div);
+          tbody.appendChild(row);
         });
-      })
-      .catch(err => {
-        console.error("Error fetching orders:", err);
-        document.getElementById('order-list').innerHTML = "<p>Error loading orders.</p>";
       });
-  });
-  
+    })
+    .catch(err => {
+      console.error("Error fetching orders:", err);
+      table.style.display = 'none';
+      noOrdersText.style.display = 'block';
+      noOrdersText.textContent = 'Error loading orders.';
+    });
+});

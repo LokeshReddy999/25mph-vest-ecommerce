@@ -1,19 +1,18 @@
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 const container = document.getElementById("checkout-summary");
+const totalAmountEl = document.getElementById("total-amount");
 
-// ✅ Merge same items (same product & size)
+// Merge same items
 const merged = {};
-
 cart.forEach(item => {
   const key = item.product + '_' + item.size;
   if (merged[key]) {
     merged[key].quantity += item.quantity;
     merged[key].total = (merged[key].quantity * item.price).toFixed(2);
   } else {
-    merged[key] = { ...item }; // clone
+    merged[key] = { ...item };
   }
 });
-
 cart = Object.values(merged);
 localStorage.setItem("cart", JSON.stringify(cart));
 
@@ -22,6 +21,7 @@ function updateDisplay() {
 
   if (cart.length === 0) {
     container.innerHTML = "<p>Your cart is empty.</p>";
+    totalAmountEl.innerText = "$0.00";
     return;
   }
 
@@ -29,28 +29,28 @@ function updateDisplay() {
 
   cart.forEach((item, index) => {
     const div = document.createElement("div");
-    div.style = "border:1px solid #ddd;padding:15px;margin-bottom:10px;border-radius:8px;background:#fff;";
+    div.className = "cart-item";
     div.innerHTML = `
       <h3>${item.product}</h3>
-      <p>👕 Size: <strong>${item.size}</strong></p>
-      <p>
-        🔢 Quantity:
-        <button onclick="changeQty(${index}, -1)">−</button>
-        <strong>${item.quantity}</strong>
-        <button onclick="changeQty(${index}, 1)">+</button>
-      </p>
-      <p>💵 Total: <strong>$${item.total}</strong></p>
-      <button onclick="removeItem(${index})" style="background:#ff4d4d;color:white;padding:6px 12px;border:none;border-radius:5px;cursor:pointer;">🗑 Remove</button>
+      <div class="cart-item-top">
+        <span>👕 Size: <strong>${item.size}</strong></span>
+        <span>🔢 
+          <button onclick="changeQty(${index}, -1)">−</button>
+          <strong>${item.quantity}</strong>
+          <button onclick="changeQty(${index}, 1)">+</button>
+        </span>
+      </div>
+      <div class="cart-item-bottom">
+        <span>💵 Total: <strong>$${item.total}</strong></span>
+        <button class="remove-btn" onclick="removeItem(${index})">🗑 Remove</button>
+      </div>
     `;
 
     container.appendChild(div);
     total += parseFloat(item.total);
   });
 
-  const summary = document.createElement("h2");
-  summary.style = "text-align:right; margin-top:20px;";
-  summary.innerText = `Total to Pay: $${total.toFixed(2)}`;
-  container.appendChild(summary);
+  totalAmountEl.innerText = `$${total.toFixed(2)}`;
 }
 
 function changeQty(index, delta) {
