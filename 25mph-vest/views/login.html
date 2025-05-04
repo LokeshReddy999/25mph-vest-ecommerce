@@ -8,65 +8,74 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="brand">25mph Vest</div>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/buy">Buy</a></li>
-        <li><a href="/login">Login</a></li>
-        <li><span id="welcomeUser" class="welcome-user"></span></li>
-      </ul>
-    </nav>
-  </header>
-  
 
-  <div class="login-container">
-    <!-- Background -->
-    <div class="background-overlay"></div>
+<!-- Header -->
+<header>
+  <div class="brand">
+    <a href="/" class="brand-link">25mph Vest</a>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="/buy">Buy</a></li>
+      <li id="loginNavItem"><a href="/login">Login</a></li>
+      <li class="user-profile" id="userDropdown" style="display: none;">
+        <span id="welcomeUser" class="profile-trigger">👤 Welcome</span>
+        <ul class="profile-dropdown" id="profileMenu">
+          <li><a href="/order-history.html">Order History</a></li>
+          <li><a href="#" id="logoutBtn">🔓 Logout</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</header>
 
-    <!-- Side Quote & Features -->
-    <div class="side-panel">
-      <h2 class="quote">"Be seen. Be safe. Because every life matters."</h2>
-      <div class="features">
-        <span class="feature-badge">✅ Certified Safety</span>
-        <span class="feature-badge">🚴‍♂️ Perfect for Cycling</span>
-        <span class="feature-badge">🌙 Night Reflective</span>
-      </div>
-      <div class="slideshow" id="slideshow">
-        <div class="slide active">Trusted by 1,000+ parents.</div>
-        <div class="slide">Designed for visibility.</div>
-        <div class="slide">Stay safe at 25mph.</div>
-      </div>
+<!-- Login Container -->
+<div class="login-container">
+  <div class="background-overlay"></div>
+
+  <!-- Left Side Text -->
+  <div class="side-panel">
+    <h2 class="quote">"Be seen. Be safe. Because every life matters."</h2>
+    <div class="features">
+      <span class="feature-badge">✅ Certified Safety</span>
+      <span class="feature-badge">🚴‍♂️ Perfect for Cycling</span>
+      <span class="feature-badge">🌙 Night Reflective</span>
     </div>
-
-    <!-- Form -->
-    <div class="form-wrapper">
-      <div id="registerForm" class="form-box show">
-        <h2>Create Account 📝</h2>
-        <form id="registerFormElement">
-          <input type="text" placeholder="Full Name" required />
-          <input type="email" placeholder="Email" required />
-          <input type="password" placeholder="Password" required />
-          <button type="submit">Register</button>
-        </form>
-        <p>Already have an account? <span class="switch" onclick="showLogin()">Login</span></p>
-      </div>
-      
-
-      <div id="loginForm" class="form-box">
-        <h2>Welcome Back 👋</h2>
-        <form>
-          <input type="email" placeholder="Email" required>
-          <input type="password" placeholder="Password" required>
-          <button type="submit">Login</button>
-        </form>
-        <p>Don’t have an account? <span class="switch" onclick="showRegister()">Register</span></p>
-      </div>
+    <div class="slideshow" id="slideshow">
+      <div class="slide active">Trusted by 1,000+ parents.</div>
+      <div class="slide">Designed for visibility.</div>
+      <div class="slide">Stay safe at 25mph.</div>
     </div>
   </div>
 
-  <script src="/js/login.js"></script>
+  <!-- Right Side Forms -->
+  <div class="form-wrapper">
+    <div id="registerForm" class="form-box show">
+      <h2>Create Account 📝</h2>
+      <form id="registerFormElement">
+        <input type="text" placeholder="Full Name" required />
+        <input type="email" placeholder="Email" required />
+        <input type="password" placeholder="Password" required />
+        <button type="submit">Register</button>
+      </form>
+      <p>Already have an account? <span class="switch" onclick="showLogin()">Login</span></p>
+    </div>
+
+    <div id="loginForm" class="form-box">
+      <h2>Welcome Back 👋</h2>
+      <form id="loginFormElement">
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+      </form>
+      <p>Don’t have an account? <span class="switch" onclick="showRegister()">Register</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="/js/login.js"></script>
+<script src="/js/welcome.js"></script>
+
 </body>
 </html>
