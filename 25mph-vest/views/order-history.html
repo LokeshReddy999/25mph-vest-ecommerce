@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>25mph Vest</title>
+  <link rel="stylesheet" href="/css/order-history.css" />
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <a href="/" class="brand-link">25mph Vest</a>
+    </div>
+
+    <nav>
+      <div class="nav-right">
+        <ul id="navList">
+          <li><a href="/buy">Buy</a></li>
+
+          <li class="cart-icon">
+            <a href="/checkout.html">🛒 <span id="cart-count">0</span></a>
+          </li>
+
+          <li class="user-profile" id="userDropdown" style="display: none;">
+            <span id="welcomeUser" class="profile-trigger">👤 Welcome</span>
+            <ul class="profile-dropdown" id="profileMenu">
+              <li><a href="/order-history.html">Order History</a></li>
+              <li><a href="#" id="logoutBtn">🔓 Logout</a></li>
+            </ul>
+          </li>
+
+          <li id="loginNavItem"><a href="/login">Login</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="order-history-container">
+    <h1>🛒 Order History</h1>
+    <p id="orderHistoryText" style="display: none;">Please log in to view your orders.</p>
+
+    <table id="orderHistoryTable">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Product</th>
+          <th>Size</th>
+          <th>Qty</th>
+          <th>Total</th>
+          <th>Payment</th>
+          <th>Order Status</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
+
+  <script src="/js/welcome.js"></script>
+  <script src="/js/order-history.js"></script>
+</body>
+</html>
