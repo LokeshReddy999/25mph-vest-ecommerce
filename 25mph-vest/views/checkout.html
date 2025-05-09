@@ -135,6 +135,10 @@
             country: document.getElementById('country').value
           };
 
+          sessionStorage.setItem('paypalOrderId', details.id);  // ✅ Store before redirect
+          sessionStorage.setItem('shippingName', shipping.fullName);
+          sessionStorage.setItem('totalAmount', total.toFixed(2));
+
 
           const user = JSON.parse(localStorage.getItem('user')) || {};
           const userEmail = user.email || details.payer.email_address;
@@ -158,14 +162,26 @@
           })
           .then(res => res.json())
           .then(() => {
+
             localStorage.removeItem("cart");
-            window.location.href = "/success.html";
+
+            // ✅ Store in sessionStorage before redirecting
+            sessionStorage.setItem('paypalOrderId', details.id);
+            sessionStorage.setItem('shippingName', shipping.fullName);
+            sessionStorage.setItem('totalAmount', total.toFixed(2));
+
+            // ✅ Wait 100ms to ensure data is saved before navigating away
+            setTimeout(() => {
+              window.location.href = "/success.html";
+            }, 100);
+          })
+
           })
           .catch(err => {
             console.error('Error saving order:', err);
             alert('Something went wrong.');
           });
-        });
+        
       },
   
       onError: (err) => {

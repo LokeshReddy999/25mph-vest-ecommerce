@@ -125,7 +125,7 @@
       animation: sparkle 2.5s infinite ease-in-out;
     }
 
-    .star:nth-child(2) { top: -12px; left: 15%; animation-delay: 0.1s; }
+    /*.star:nth-child(2) { top: -12px; left: 15%; animation-delay: 0.1s; }
     .star:nth-child(3) { top: -10px; right: 10%; animation-delay: 0.3s; }
     .star:nth-child(4) { bottom: -12px; left: 20%; animation-delay: 0.5s; }
     .star:nth-child(5) { bottom: -10px; right: 20%; animation-delay: 0.7s; }
@@ -133,7 +133,7 @@
     @keyframes sparkle {
       0%, 100% { transform: scale(0); opacity: 0; }
       50% { transform: scale(1.6); opacity: 1; }
-    }
+    }*/
 
     h1 {
       font-size: 22px;
@@ -253,7 +253,7 @@
   <main>
     <div class="success-box">
       <div class="checkmark-wrapper">
-        <div class="circle">
+      <div class="circle">
           <svg viewBox="0 0 24 24">
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
@@ -265,11 +265,22 @@
       </div>
       <h1> Thank you for your purchase!</h1>
       <p>Your order has been successfully placed.</p>
+      <p id="order-id-display" style="font-size: 14px; margin-top: 10px; color: #444;"></p>
       <p>Your order will be delivered in <strong>14 days</strong>.</p>
       <p class="email">For any questions, email <strong>25mphvest@gmail.com</strong></p>
       <a href="/" class="home-btn">Back to Home</a>
     </div>
   </main>
+  <script>
+    const paypalOrderId = sessionStorage.getItem('paypalOrderId');
+    console.log("✅ PayPal Order ID from sessionStorage:", paypalOrderId);
+    if (paypalOrderId) {
+      const display = document.getElementById('order-id-display');
+      display.innerHTML = `Your PayPal Order ID: <strong>${paypalOrderId}</strong>`;
+      sessionStorage.removeItem('paypalOrderId'); 
+    }
+  </script>
+  
   <script src="/js/welcome.js"></script>
 </body>
 </html>

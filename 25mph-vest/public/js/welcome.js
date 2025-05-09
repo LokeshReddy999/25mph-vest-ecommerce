@@ -1,5 +1,3 @@
-// welcome.js
-
 window.addEventListener('DOMContentLoaded', () => {
   const user = JSON.parse(localStorage.getItem('user'));
   const loginNavItem = document.getElementById('loginNavItem');
@@ -25,25 +23,35 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // DROPDOWN LOGIC: open on click, stable until clicked outside
+  // DROPDOWN LOGIC
   if (welcomeUser && profileMenu) {
     let dropdownOpen = false;
-
     welcomeUser.addEventListener('click', (e) => {
       e.stopPropagation(); 
       dropdownOpen = !dropdownOpen;
       profileMenu.style.display = dropdownOpen ? 'block' : 'none';
     });
-
-    profileMenu.addEventListener('click', (e) => {
-      e.stopPropagation(); 
-    });
-
+    profileMenu.addEventListener('click', (e) => e.stopPropagation());
     document.addEventListener('click', () => {
       if (dropdownOpen) {
         dropdownOpen = false;
         profileMenu.style.display = 'none';
       }
     });
+  }
+
+  // 🛒 Show cart icon if items exist in cart (MOVED INSIDE DOMContentLoaded)
+  const cartNavItem = document.getElementById('cartNavItem');
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  if (cart.length > 0) {
+    if (cartNavItem) {
+      cartNavItem.style.display = 'inline-block';
+      const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const badge = document.getElementById('cart-count');
+      if (badge) badge.innerText = totalQty;
+    }
+  } else {
+    if (cartNavItem) cartNavItem.style.display = 'none';
   }
 });

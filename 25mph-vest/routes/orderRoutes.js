@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Order = require('../models/Order');
 const Inventory = require('../models/inventory');
+const { sendOrderConfirmation } = require('../utils/mailer');
 
 // Save order and update inventory
 router.post('/', async (req, res) => {
@@ -30,13 +31,27 @@ router.post('/', async (req, res) => {
       }
     }
 
+    console.log("🧾 Incoming req.body.paypalOrderId:", req.body.paypalOrderId);
+    console.log("📦 Mongoose order.paypalOrderId:", order.paypalOrderId);
+    
+    await sendOrderConfirmation(order.shippingAddress.email,
+   {
+      userName: order.shippingAddress.fullName,
+      paypalOrderId: order.paypalOrderId,
+      totalAmount: order.totalAmount,
+      paymentStatus: order.paymentStatus,
+      orderStatus: order.orderStatus,
+      shippingAddress: order.shippingAddress,
+      items: order.items,
+    });
+    
+
     res.status(201).json({ message: "Order saved and inventory updated" });
   } catch (err) {
     console.error("❌ Order saving or inventory update failed:", err);
     res.status(500).json({ error: "Order save/inventory update failed" });
   }
 });
-
 
 
 // Get orders by user email

@@ -7,8 +7,6 @@
   <link rel="stylesheet" href="/css/homepage.css" />
 </head>
 
-<script src="/js/welcome.js"></script>
-
 <body>
 
   <!-- Header -->
@@ -21,6 +19,9 @@
       <ul>
         <li><a href="/buy">Buy</a></li>
         <li id="loginNavItem"><a href="/login">Login</a></li>
+        <li class="cart-icon" id="cartNavItem" style="display: none;">
+          <a href="/checkout.html">🛒 <span id="cart-count">0</span></a>
+        </li>        
         <li class="user-profile" id="userDropdown" style="display: none;">
           <span id="welcomeUser" class="profile-trigger">👤 Welcome</span>
           <ul class="profile-dropdown" id="profileMenu">
@@ -39,9 +40,9 @@
         <p>Our neon green 25mph vest helps drivers slow down when you're out walking, jogging, or biking.</p>
         <h3>Why Use a 25mph Vest?</h3>
         <ul>
-          <li>✅ High visibility in all lighting</li>
-          <li>✅ Lightweight and durable</li>
-          <li>✅ Great for neighborhoods, schools, and trails</li>
+          <li> High visibility in all lighting</li>
+          <li> Lightweight and durable</li>
+          <li> Great for neighborhoods, schools, and trails</li>
         </ul>
         <a href="/buy" class="order-now-btn">Order Now</a>
       </div>
@@ -56,6 +57,10 @@
     <div class="contact-container">
       <h2>Contact Us</h2>
       <p>Email: <strong>25mphvest@gmail.com</strong></p>
+      <p>Company Address: <strong>62 Calef Highway #240 Lee NH, USA</strong></p>
     </div>
   </section>
   
+  <script src="/js/welcome.js"></script>
+</body>
+</html>

@@ -130,12 +130,17 @@ function goToCheckout(type) {
 
 // Cart badge
 function updateCartCount() {
-  const count = JSON.parse(localStorage.getItem("cart"))?.length || 0;
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const count = cart.reduce((sum, item) => sum + item.quantity, 0); // sum total quantity
   const badge = document.getElementById("cart-count");
-  badge.innerText = count;
-  badge.classList.add("bump");
-  setTimeout(() => badge.classList.remove("bump"), 400);
+
+  if (badge) {
+    badge.innerText = count;
+    badge.classList.add("bump");
+    setTimeout(() => badge.classList.remove("bump"), 400);
+  }
 }
+
 async function updateStockWarnings() {
   try {
     const res = await fetch('/api/inventory');
