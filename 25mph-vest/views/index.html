@@ -4,20 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>25mph Vest</title>
-  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/homepage.css" />
 </head>
-  <script src="/js/welcome.js"></script>
 
 <body>
 
   <!-- Header -->
   <header>
-    <div class="brand">25mph Vest</div>
+    <div class="brand">
+      <a href="/" class="brand-link">25mph Vest</a>
+    </div>
+    
     <nav>
       <ul>
-        <li><a href="/">Home</a></li>
         <li><a href="/buy">Buy</a></li>
         <li id="loginNavItem"><a href="/login">Login</a></li>
+        <li class="cart-icon" id="cartNavItem" style="display: none;">
+          <a href="/checkout.html">🛒 <span id="cart-count">0</span></a>
+        </li>        
         <li class="user-profile" id="userDropdown" style="display: none;">
           <span id="welcomeUser" class="profile-trigger">👤 Welcome</span>
           <ul class="profile-dropdown" id="profileMenu">
@@ -26,44 +30,37 @@
           </ul>
         </li>
       </ul>
-      
     </nav>
-    
-    
   </header>
-  
 
-  
-
-  <!-- Hero Section -->
-  <section class="hero" id="home">
+  <section class="hero-section">
     <div class="hero-container">
       <div class="hero-text">
         <h1>Be Seen. Be Safe.</h1>
         <p>Our neon green 25mph vest helps drivers slow down when you're out walking, jogging, or biking.</p>
         <h3>Why Use a 25mph Vest?</h3>
         <ul>
-          <li>✅ High visibility in all lighting</li>
-          <li>✅ Lightweight and durable</li>
-          <li>✅ Great for neighborhoods, schools, and trails</li>
+          <li> High visibility in all lighting</li>
+          <li> Lightweight and durable</li>
+          <li> Great for neighborhoods, schools, and trails</li>
         </ul>
-        <a href="/buy">Order Now</a>
+        <a href="/buy" class="order-now-btn">Order Now</a>
       </div>
       <div class="hero-image">
         <img src="/images/vest.png" alt="25mph Vest" />
       </div>
     </div>
   </section>
-
-  <!-- How It Works Section -->
-  <section id="how-it-works">
-    <h2>How It Works</h2>
-    <div class="card-container">
-      <div class="card">Browse your preferred vest</div>
-      <div class="card">Select size and quantity</div>
-      <div class="card">Available for delivery within the United States.</div>
+  
+  <!-- Contact Us Section -->
+  <section class="contact-section">
+    <div class="contact-container">
+      <h2>Contact Us</h2>
+      <p>Email: <strong>25mphvest@gmail.com</strong></p>
+      <p>Company Address: <strong>62 Calef Highway #240 Lee NH, USA</strong></p>
     </div>
   </section>
-
+  
+  <script src="/js/welcome.js"></script>
 </body>
 </html>

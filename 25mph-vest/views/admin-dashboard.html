@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Dashboard - 25mph Vest</title>
+  <link rel="stylesheet" href="/css/admin-dashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Flatpickr CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <!-- Custom Theme (Optional) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_green.css">
+
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <a href="/" class="brand-link">25mph Vest</a>
+    </div>
+    
+    <nav>
+      <ul>
+        <li class="user-profile">
+          <span class="profile-trigger" id="adminToggle">👤 Admin</span>
+          <ul class="profile-dropdown" id="adminDropdown">
+            <li><a href="/admin-dashboard.html">Dashboard</a></li>
+            <li><a href="/" id="logoutBtn">Logout</a></li>
+          </ul>
+        </li>
+        
+      </ul>
+    </nav>
+  </header>
+
+  <main class="dashboard-container">
+    <h1>Welcome, Admin </h1>
+
+    <!-- 🔘 Tab Buttons -->
+    <div class="tab-buttons">
+      <button class="tab-btn active" data-tab="dashboardTab">📊 Dashboard</button>
+      <button class="tab-btn" data-tab="ordersTab">📦 Orders</button>
+      <button class="tab-btn" data-tab="usersTab">👥 Users</button>
+    </div>
+
+    <!-- 📊 Dashboard Tab -->
+    <div class="tab-content active" id="dashboardTab">
+      <div class="kpi-cards">
+        <div class="kpi-card green">
+          <h4>📦 Total Orders</h4>
+          <p id="totalOrders">14</p>
+        </div>
+        <div class="kpi-card blue">
+          <h4>💰 Total Revenue</h4>
+          <p id="totalRevenue">$0.00</p>
+        </div>
+      </div>
+
+      <section class="inventory-section">
+        <h2> Inventory Management</h2>
+        <table class="inventory-table">
+          <thead>
+            <tr>
+              <th>Product Type</th>
+              <th>Size</th>
+              <th>Available Quantity</th>
+              <th>Update Quantity</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="inventoryTableBody">
+          </tbody>
+        </table>
+      </section>
+    </div>
+    
+
+    <!--  Orders Tab -->
+    <div class="tab-content" id="ordersTab">
+      <h2>📦 Recent Orders</h2>
+      <!-- Filter Bar -->
+      <div class="filters-row">
+        <input type="text" id="filterName" placeholder="Search by Name" />
+        <input type="text" id="filterProduct" placeholder="Search by Product" />
+        <input type="text" id="filterDate" placeholder="mm/dd/yy" />
+        <button onclick="applyOrderFilters()" class="filter-btn">🔍 Filter</button>
+        <button onclick="resetOrderFilters()" class="clear-btn">🧹 Clear</button>
+      </div>
+      
+
+      
+      <table id="ordersTable" class="inventory-table">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Product</th>
+            <th>Size</th>
+            <th>Qty</th>
+            <th>Total</th>
+            <th>Date</th>
+            <th>Address Line</th>
+            <th>City</th>
+            <th>State</th>
+            <th>ZIP</th>
+            <th>Mobile</th> 
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- 👥 Users Tab -->
+    <div class="tab-content" id="usersTab">
+      <h2>Customers</h2>
+      <table id="customersTable" class="inventory-table">
+        <thead>
+          <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="/js/admin-dashboard.js"></script>
+  <!-- Flatpickr JS -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+</body>
+</html>

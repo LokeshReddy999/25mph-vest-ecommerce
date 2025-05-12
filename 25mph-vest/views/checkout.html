@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Checkout - 25mph Vest</title>
+  <link rel="stylesheet" href="/css/buy-style.css" />
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <a href="/" class="brand-link">25mph Vest</a>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="/buy">Buy</a></li>
+      <li class="cart-icon">
+        <a href="/checkout.html">🛒 <span id="cart-count">0</span></a>
+      </li>
+      <li class="user-profile" id="userDropdown" style="display: none;">
+        <span id="welcomeUser" class="profile-trigger">👤 Welcome</span>
+        <ul class="profile-dropdown" id="profileMenu">
+          <li><a href="/order-history.html">Order History</a></li>
+          <li><a href="#" id="logoutBtn">🔓 Logout</a></li>
+        </ul>
+      </li>
+      <li id="loginNavItem"><a href="/login">Login</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <div class="tab-buttons">
+    <h2>Your Order Summary</h2>
+  </div>
+
+  <div class="checkout-wrapper">
+    <!-- Left: Cart Summary -->
+    <div class="cart-summary">
+      <div id="checkout-summary" class="cart-items"></div>
+      <div class="cart-total-fixed">
+        Total to Pay: <span id="total-amount">$0.00</span>
+      </div>
+    </div>
+
+    <!-- Right: Shipping Address -->
+    <div class="shipping-form">
+      <h3>Shipping Address</h3>
+      <form id="shippingForm">
+
+        <div class="form-row">
+          <input type="text" id="fullName" placeholder="Full Name" required>
+        </div>
+      
+        <div class="form-row">
+          <input type="email" id="email" placeholder="Email Address" required>
+          <input type="text" id="mobile" placeholder="Mobile Number" required>
+        </div>
+      
+        <div class="form-row">
+          <input type="text" id="addressLine1" placeholder="Address Line 1" required>
+        </div>
+      
+        <div class="form-row">
+          <input type="text" id="city" placeholder="City" required>
+          <input type="text" id="state" placeholder="State" required>
+        </div>
+      
+        <div class="form-row postal-country">
+          <input type="text" id="postalCode" placeholder="Postal Code" required>
+          <input type="text" id="country" value="US" required>
+        </div>
+      
+        <div id="paypal-button-wrapper">
+          <div id="paypal-button-container"></div>
+        </div>
+      
+      </form>
+      
+    </div>
+  </div>
+</main>
+
+<script src="/js/checkout.js"></script>
+<script src="/js/welcome.js"></script>
+
+<!-- PayPal SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=AQZnPrasE6CFVoteV1edxobpYD_QP3WHiC8bnREMqKIsp3kVXQJpo6Rvxhufa0aPovoImgY_paA_463p&currency=USD&intent=capture"></script>
+
+<!-- PayPal Checkout Logic -->
+<script>
+  window.addEventListener('load', () => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let total = 0;
+    cart.forEach(item => total += parseFloat(item.total));
+  
+    function validateShippingForm() {
+      const fields = ['fullName', 'email', 'mobile', 'addressLine1', 'city', 'state', 'postalCode', 'country'];
+      for (let field of fields) {
+        if (!document.getElementById(field).value.trim()) {
+          alert('Please fill all shipping address fields!');
+          return false;
+        }
+      }
+      return true;
+    }
+  
+    paypal.Buttons({
+      onClick: (data, actions) => {
+        if (!validateShippingForm()) {
+          return actions.reject();
+        }
+        return actions.resolve();
+      },
+  
+      createOrder: (data, actions) => {
+        return actions.order.create({
+          purchase_units: [{
+            amount: { value: total.toFixed(2) }
+          }]
+        });
+      },
+  
+      onApprove: (data, actions) => {
+        return actions.order.capture().then(details => {
+          const shipping = {
+            fullName: document.getElementById('fullName').value,
+            email: document.getElementById('email').value,
+            mobile: document.getElementById('mobile').value,
+            addressLine1: document.getElementById('addressLine1').value,
+            city: document.getElementById('city').value,
+            state: document.getElementById('state').value,
+            postalCode: document.getElementById('postalCode').value,
+            country: document.getElementById('country').value
+          };
+
+          sessionStorage.setItem('paypalOrderId', details.id);  // ✅ Store before redirect
+          sessionStorage.setItem('shippingName', shipping.fullName);
+          sessionStorage.setItem('totalAmount', total.toFixed(2));
+
+
+          const user = JSON.parse(localStorage.getItem('user')) || {};
+          const userEmail = user.email || details.payer.email_address;
+          const userName = user.name || `${details.payer.name.given_name} ${details.payer.name.surname}`;
+
+          const orderData = {
+            userEmail,
+            userName,
+            paypalOrderId: details.id,
+            totalAmount: total,
+            items: cart,
+            shippingAddress: shipping,
+            paymentStatus: "Paid",
+            orderStatus: "Confirmed"
+          };
+
+          fetch('/api/orders', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(orderData)
+          })
+          .then(res => res.json())
+          .then(() => {
+
+            localStorage.removeItem("cart");
+
+            // ✅ Store in sessionStorage before redirecting
+            sessionStorage.setItem('paypalOrderId', details.id);
+            sessionStorage.setItem('shippingName', shipping.fullName);
+            sessionStorage.setItem('totalAmount', total.toFixed(2));
+
+            // ✅ Wait 100ms to ensure data is saved before navigating away
+            setTimeout(() => {
+              window.location.href = "/success.html";
+            }, 100);
+          })
+
+          })
+          .catch(err => {
+            console.error('Error saving order:', err);
+            alert('Something went wrong.');
+          });
+        
+      },
+  
+      onError: (err) => {
+        console.error('PayPal Checkout Error:', err);
+        alert('PayPal Checkout failed.');
+      }
+    }).render('#paypal-button-container');
+  });
+  </script>
+  
+
+</body>
+</html>

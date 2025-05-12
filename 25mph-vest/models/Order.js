@@ -15,6 +15,19 @@ const OrderSchema = new mongoose.Schema({
     }
   ],
   totalAmount: { type: Number, required: true },
+
+  
+  shippingAddress: {
+    fullName: { type: String },
+    email: { type: String },       
+    mobile: { type: String },       
+    addressLine1: { type: String },
+    city: { type: String },
+    state: { type: String },
+    postalCode: { type: String },
+    country: { type: String }
+  },
+
   paymentStatus: { type: String, default: "Paid" },
   orderStatus: { type: String, default: "Pending" },
   createdAt: { type: Date, default: Date.now }

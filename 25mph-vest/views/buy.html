@@ -8,27 +8,39 @@
 </head>
 <body>
   <!-- Header -->
-  <header>
-    <div class="brand">25mph Vest</div>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a class="active" href="/buy">Buy</a></li>
-        <li><a href="/login">Login</a></li>
-        <li class="cart-icon">
-          <a href="/checkout.html">
-            🛒 <span id="cart-count">0</span>
-        <li><span id="welcomeUser" class="welcome-user"></span></li>    
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </header>
+<header>
+  <div class="brand">
+    <a href="/" class="brand-link">25mph Vest</a>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="/buy">Buy</a></li>
+      <li id="loginNavItem"><a href="/login">Login</a></li>
+      
+      <li class="cart-icon">
+        <a href="/checkout.html">🛒 <span id="cart-count">0</span></a>
+      </li>
+
+      <li class="user-profile" id="userDropdown" style="display: none;">
+        <span id="welcomeUser" class="profile-trigger">👤 Welcome</span>
+        <ul class="profile-dropdown" id="profileMenu">
+          <li><a href="/order-history.html">Order History</a></li>
+          <li><a href="#" id="logoutBtn">🔓 Logout</a></li>
+        </ul>
+      </li>
+
+    </ul> 
+  </nav>
+</header>
+
+  
+  
 
   <!-- Tab Buttons -->
   <div class="tab-buttons">
-    <button id="kidsBtn" class="tab-btn active">Kids Vest</button>
-    <button id="adultBtn" class="tab-btn">Adult Vest</button>
+    <button id="kidsBtn" class="tab-btn active">Kids</button>
+    <button id="adultBtn" class="tab-btn">Adults</button>
   </div>
 
   <!-- Kids Vest Section -->
@@ -38,7 +50,7 @@
         <img src="/images/kids-vest.png" alt="Kids Vest" />
       </div>
       <div class="vest-info">
-        <h2>👦 Kids 25mph Vest</h2>
+        <h2> Kids 25mph Vest</h2>
 
         <div class="price">Price: <span class="price-amount">$9.99</span></div>
 
@@ -55,18 +67,19 @@
           <label for="kidsSize">Size:</label>
           <select id="kidsSize" required>
             <option value="">Select</option>
-            <option value="XS">XS</option>
             <option value="S">S</option>
-            <option value="M">M</option>
           </select>
         </div>
 
-        <div class="total-price">🧾 Total: <span id="kidsTotal">$9.99</span></div>
+        <div class="total-price"> Total: <span id="kidsTotal">$9.99</span></div>
 
         <div class="size-chart">
-          <div class="size-guide-label">📏 Size Guide</div>
-          <img src="/images/sizes.jpeg" alt="Size Chart" />
+          <div class="size-guide-label"> Size Guide</div>
+          <img src="/images/size1.png" alt="Size Chart" />
         </div>
+
+        <div class="low-stock-warning" id="adultStockWarning"></div>
+
 
         <div class="action-buttons">
           <button class="buy-btn" onclick="addToCart('kids')">Add to Cart</button>
@@ -83,7 +96,7 @@
         <img src="/images/adult-vest.png" alt="Adult Vest" />
       </div>
       <div class="vest-info">
-        <h2>🧑 Adult 25mph Vest</h2>
+        <h2> Adult 25mph Vest</h2>
 
         <div class="price">Price: <span class="price-amount">$9.99</span></div>
 
@@ -100,18 +113,18 @@
           <label for="adultSize">Size:</label>
           <select id="adultSize" required>
             <option value="">Select</option>
-            <option value="S">S</option>
             <option value="M">M</option>
             <option value="L">L</option>
           </select>
         </div>
 
-        <div class="total-price">🧾 Total: <span id="adultTotal">$9.99</span></div>
+        <div class="total-price"> Total: <span id="adultTotal">$9.99</span></div>
 
-        <div class="size-chart">
-          <div class="size-guide-label">📏 Size Guide</div>
-          <img src="/images/sizes.jpeg" alt="Size Chart" />
+        <div class="size-chart adult-size-chart">
+          <div class="size-guide-label"> Size Guide</div>
+          <img src="/images/size2.png" alt="Adult Size Chart" />
         </div>
+        
 
         <div class="action-buttons">
           <button class="buy-btn" onclick="addToCart('adult')">Add to Cart</button>
@@ -122,5 +135,7 @@
   </section>
 
   <script src="/js/buy.js"></script>
+  <script src="/js/welcome.js"></script>
+
 </body>
 </html>

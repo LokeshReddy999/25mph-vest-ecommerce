@@ -30,6 +30,11 @@ app.get('/buy', (req, res) => {
   res.sendFile(path.join(__dirname, 'views/buy.html'));
 });
 
+app.get('/login.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'login.html'));
+});
+
+
 app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'views/login.html'));
 });
@@ -51,6 +56,11 @@ app.get('/order-history.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'views/order-history.html'));
 });
 
+app.get('/admin-dashboard.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views/admin-dashboard.html'));
+});
+
+
 
 // Routes for APIs
 const orderRoutes = require('./routes/orderRoutes');
@@ -61,6 +71,13 @@ app.use('/api/auth', authRoutes);
 
 const userRoutes = require('./routes/userRoutes');
 app.use('/api/users', userRoutes);
+
+const adminRoutes = require('./routes/adminRoutes');
+app.use('/api/admin', adminRoutes); 
+
+
+const inventoryRoutes = require('./routes/inventoryRoutes');
+app.use('/api/inventory', inventoryRoutes);
 
 
 // Start server

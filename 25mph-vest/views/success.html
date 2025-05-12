@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Thank You - 25mph Vest</title>
+  <link rel="stylesheet" href="/css/buy-style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #f9f9f9;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #eee;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .brand-link {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #28c028;
+      text-decoration: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    nav a:hover {
+      background: #2ecc40;
+      color: white;
+    }
+
+    main {
+      min-height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .success-box {
+    background: #fff;
+    padding: 70px 50px 60px;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 560px;
+    animation: fadeInUp 0.6s ease-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 440px;
+  }
+
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .checkmark-wrapper {
+      position: relative;
+      display: inline-block;
+      width: 70px;
+      height: 70px;
+      margin-bottom: 30px;
+    }
+
+    .circle {
+      width: 70px;
+      height: 70px;
+      border: 3px solid #28c028;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .circle svg {
+      width: 40px;
+      height: 40px;
+      stroke: #28c028;
+      stroke-width: 4px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    .star {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #28c028;
+      border-radius: 50%;
+      opacity: 0;
+      animation: sparkle 2.5s infinite ease-in-out;
+    }
+
+    /*.star:nth-child(2) { top: -12px; left: 15%; animation-delay: 0.1s; }
+    .star:nth-child(3) { top: -10px; right: 10%; animation-delay: 0.3s; }
+    .star:nth-child(4) { bottom: -12px; left: 20%; animation-delay: 0.5s; }
+    .star:nth-child(5) { bottom: -10px; right: 20%; animation-delay: 0.7s; }
+
+    @keyframes sparkle {
+      0%, 100% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.6); opacity: 1; }
+    }*/
+
+    h1 {
+      font-size: 22px;
+      margin: 0 0 12px;
+      color: #28c028;
+    }
+
+    .success-box p {
+      color: #444;
+      font-size: 15px;
+      margin: 6px 0;
+    }
+
+    .email {
+      margin-top: 14px;
+      color: #555;
+      font-style: italic;
+      font-size: 14px;
+    }
+
+    .home-btn {
+      margin-top: 28px;
+      padding: 12px 26px;
+      background-color: #28c028;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 16px;
+      transition: 0.3s ease;
+      box-shadow: 0 0 15px rgba(0, 204, 102, 0.4);
+    }
+
+    .home-btn:hover {
+      background-color: #21ac1e;
+      transform: scale(1.05);
+    }
+
+    .vest {
+      position: absolute;
+      width: 80px;
+      height: auto;
+      animation: fall 8s linear infinite;
+      opacity: 0.15;
+      z-index: 0;
+    }
+
+    .vest:nth-child(1) { top: -40px; left: 5%; animation-delay: 0s; }
+    .vest:nth-child(2) { top: -40px; left: 25%; animation-delay: 1.5s; }
+    .vest:nth-child(3) { top: -40px; left: 50%; animation-delay: 3s; }
+    .vest:nth-child(4) { top: -40px; left: 70%; animation-delay: 2s; }
+    .vest:nth-child(5) { top: -40px; left: 85%; animation-delay: 4s; }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10%) rotate(0deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(120vh) rotate(360deg);
+        opacity: 0.2;
+      }
+    }
+
+.falling-vest {
+  animation: fall 10s linear infinite;
+}
+
+.falling-vest {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.falling-vest {
+  opacity: 0.9;
+  transform: scale(1.2); 
+}
+
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <a href="/" class="brand-link">25mph Vest</a>
+    </div>
+  
+    <nav>
+      <ul>
+        <li><a href="/buy">Buy</a></li>
+        <li id="loginNavItem"><a href="/login">Login</a></li>
+        
+        <li class="cart-icon">
+          <a href="/checkout.html">🛒 <span id="cart-count">0</span></a>
+        </li>
+  
+        <li class="user-profile" id="userDropdown" style="display: none;">
+          <span id="welcomeUser" class="profile-trigger">👤 Welcome</span>
+          <ul class="profile-dropdown" id="profileMenu">
+            <li><a href="/order-history.html">Order History</a></li>
+            <li><a href="#" id="logoutBtn">🔓 Logout</a></li>
+          </ul>
+        </li>
+  
+      </ul> 
+    </nav>
+  </header>
+
+  <!-- Falling Vests -->
+  <img src="/images/vest-icon.png" alt="Vest" class="vest">
+  <img src="/images/vest-icon.png" alt="Vest" class="vest">
+  <img src="/images/vest-icon.png" alt="Vest" class="vest">
+  <img src="/images/vest-icon.png" alt="Vest" class="vest">
+  <img src="/images/vest-icon.png" alt="Vest" class="vest">
+
+  <main>
+    <div class="success-box">
+      <div class="checkmark-wrapper">
+      <div class="circle">
+          <svg viewBox="0 0 24 24">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+      </div>
+      <h1> Thank you for your purchase!</h1>
+      <p>Your order has been successfully placed.</p>
+      <p id="order-id-display" style="font-size: 14px; margin-top: 10px; color: #444;"></p>
+      <p>Your order will be delivered in <strong>14 days</strong>.</p>
+      <p class="email">For any questions, email <strong>25mphvest@gmail.com</strong></p>
+      <a href="/" class="home-btn">Back to Home</a>
+    </div>
+  </main>
+  <script>
+    const paypalOrderId = sessionStorage.getItem('paypalOrderId');
+    console.log("✅ PayPal Order ID from sessionStorage:", paypalOrderId);
+    if (paypalOrderId) {
+      const display = document.getElementById('order-id-display');
+      display.innerHTML = `Your PayPal Order ID: <strong>${paypalOrderId}</strong>`;
+      sessionStorage.removeItem('paypalOrderId'); 
+    }
+  </script>
+  
+  <script src="/js/welcome.js"></script>
+</body>
+</html>
