@@ -1,0 +1,11 @@
+version : "3.8"
+
+services:
+  app: 
+    image: lokeshkasumuru/25mph-vest:0.1
+    container_name: vest-app
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+  
